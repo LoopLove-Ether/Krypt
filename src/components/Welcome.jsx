@@ -1,7 +1,6 @@
 import React, { useContext } from "react"; //导入钩子
 
 //导入一些图标
-import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
@@ -47,12 +46,13 @@ const Welcome = () => {
 
     e.preventDefault(); //通常当我们提交一个表单时，页面会重新加载，但在React应用程序中我们希望防止这种情况发生，这就是我们调用这个函数的原因。
     //检查用户是否填写了字段
-    //如果有未填写的话就丢弃这个函数
+    //如果有未填写的话就丢弃这个函数(如果有未填写的字段就不提交交易了)
     if (!addressTo || !amount || !keyword || !message) return;
 
     sendTransaction();
   };
 
+  //刷新页面的功能
   const Refresh = (e) => {
     window.location.reload();
   };
@@ -140,7 +140,7 @@ const Welcome = () => {
               type="text"
               handleChange={handleChange}
             />
-            {/* handleChange函数会根据特定输入的name动态更新这些输入,因此name必须与状态中的name完全匹配 */}
+            {/* handleChange函数会根据特定输入的name动态更新这些输入,因此name必须与表单字段中的name完全匹配 */}
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
 

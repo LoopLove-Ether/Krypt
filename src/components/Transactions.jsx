@@ -7,6 +7,14 @@ import { shortenAddress } from "../utils/shortenAddress"; //导入切片函数
 
 import useFetch from "../hooks/useFetch"; //导入获取gif的钩子
 
+//context中的transactions状态变量是一个结构体数组
+//这个结构体数组中的变量及顺序为:
+//addressTo
+//addressFrom
+//timestamp
+//message
+//keyword
+//amount
 //交易卡组件
 const TransactionCard = ({
   addressTo,
@@ -92,6 +100,7 @@ const Transactions = () => {
         {/* Latest Transactions(当我们的账户连接时) */}
         {/* Connect your account to see the latest transactions(当我们的账户未连接时) */}
         {/* 接下来要遍历所有的真实交易 */}
+        {/* 渲染上面定义的TransactionCard组件 */}
         <div className="flex flex-wrap justify-center items-center mt-10">
           {transactions.reverse().map((transaction, i) => (
             <TransactionCard key={i} {...transaction} />

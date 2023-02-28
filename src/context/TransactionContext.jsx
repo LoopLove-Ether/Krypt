@@ -3,14 +3,11 @@ import { ethers } from "ethers"; //ethers可以与智能合约进行交互
 
 import { contractABI, contractAddress } from "../utils/constants"; //导入与智能合约的abi和地址
 
-//导出context
+//创建context对象并导出
 export const TransactionContext = React.createContext();
 
 //通过Metamask访问以太坊对象
 const { ethereum } = window;
-
-// //解构以太坊对象
-// window.ethereum
 
 //通过这个函数来获取我们的以太坊合约
 const getEthereumContract = () => {
@@ -42,7 +39,7 @@ export const TransactionProvider = ({ children }) => {
   //添加交易数量状态
   //将交易数量存储到本地存储中
   const [transactionCount, setTransactionCount] = useState(
-    localStorage.getItem("transactionCount")
+    window.localStorage.getItem("transactionCount")
   );
   //添加交易列表状态
   const [transactions, setTransactions] = useState([]);
@@ -159,7 +156,7 @@ export const TransactionProvider = ({ children }) => {
       const transactionContract = getEthereumContract(); //可以使用这个变量来调用所有与合约相关的函数
       const parsedAmount = ethers.utils.parseEther(amount); //赋予将十进制转换为十六进制功能
 
-      //发送一些ETH
+      //发送一些ETH(发送交易)
       await ethereum.request({
         method: "eth_sendTransaction",
         params: [

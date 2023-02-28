@@ -24,6 +24,7 @@ const useFetch = ({ keyword }) => {
     }
   };
 
+  //指定了依赖数组keyword
   //将在关键字更改时调用
   useEffect(() => {
     if (keyword) fetchGifs();
